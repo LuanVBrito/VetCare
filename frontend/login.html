@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VetCare — Entrar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <form class="login" id="form">
+    <h1>VetCare</h1>
+    <label>E-mail <input type="email" id="email" required autofocus></label>
+    <label>Senha <input type="password" id="senha" required></label>
+    <div class="erro" id="erro"></div>
+    <button class="primario" type="submit">Entrar</button>
+  </form>
+
+  <script>
+    document.getElementById('form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const erro = document.getElementById('erro');
+      erro.textContent = '';
+      try {
+        const r = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email.value, senha: senha.value }),
+        });
+        const corpo = await r.json();
+        if (!r.ok) throw new Error(corpo.erro || 'Erro ao entrar');
+        sessionStorage.setItem('token', corpo.token);
+        sessionStorage.setItem('usuario', JSON.stringify(corpo.usuario));
+        location.href = '/index.html';
+      } catch (err) {
+        erro.textContent = err.message;
+      }
+    });
+  </script>
+</body>
+</html>

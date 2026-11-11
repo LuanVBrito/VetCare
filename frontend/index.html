@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VetCare</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>VetCare</h1>
+    <div><span id="quem"></span> <button id="sair">Sair</button></div>
+  </header>
+  <nav id="menu"></nav>
+  <main id="conteudo"></main>
+
+  <dialog id="dialogo">
+    <form id="form" method="dialog">
+      <h3 id="titulo-form"></h3>
+      <div id="campos"></div>
+      <div class="erro" id="erro-form"></div>
+      <div class="acoes">
+        <button type="button" id="cancelar">Cancelar</button>
+        <button type="submit" class="primario">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
